@@ -1,5 +1,4 @@
 import React from 'react';
-
 import {
     Grid,
     InputAdornment,
@@ -13,8 +12,8 @@ import {
     Search as MagnifierIcon,
 } from "@material-ui/icons";
 import clsx from "clsx";
-import { CitySearch } from '../../interfaces/citySearch';
-
+import { SuggestedCities } from '../../interfaces/HotelSearch';
+import { useCitySearch ,useGetSuggestedCities,useSetCityCode} from '../../state/hotels/hook';
 const useStyles = makeStyles((theme) => ({
     cityName: {
         fontWeight: 400,
@@ -29,27 +28,30 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: theme.spacing(1),
       },
   }));
-
 const SearchCity = () => {
     const classes = useStyles();
     const [inputValue, setInputValue] = React.useState('')
-    const [options, setOptions] = React.useState<CitySearch[]>([]);
-
+    const suggestedCites=useGetSuggestedCities()
+    const citySearch=useCitySearch()
+    const setCityCode=useSetCityCode()
+    React.useEffect(()=>{
+    },[inputValue,suggestedCites])
     return (
         <div>
             <Autocomplete
                 autoComplete
                 autoHighlight
                 freeSolo
-                disableClearable
-                blurOnSelect
-                clearOnBlur
-                options={options}
+                // disableClearable
+                // blurOnSelect
+                // clearOnBlur
+                options={ suggestedCites||[]}
                 onChange={(event, newValue) => {
-                    // setCityCode(newValue.code);
+                   setCityCode(newValue)
                 }}
                 onInputChange={(event, newInputValue) => {
-                    setInputValue(newInputValue);
+                    setInputValue(newInputValue)
+                    citySearch(newInputValue);
                 }}
                 getOptionLabel={(option) => option.cityName || ""}
                 renderOption={(option) => {
@@ -61,8 +63,8 @@ const SearchCity = () => {
                             <Grid item xs>
                                 <span className={classes.cityName}>{option.cityName}</span>
                                 <Typography variant="body2" color="textSecondary">
-                                    {option.countryName}
-                                    {option.stateCode ? `, ${option.stateCode}` : ""}
+                                    { option.countryName}
+                                    { option.stateCode ? `, ${option.stateCode}` : ""}
                                 </Typography>
                             </Grid>
                         </Grid>
@@ -90,5 +92,4 @@ const SearchCity = () => {
         </div>
     );
 }
-
 export default SearchCity ;

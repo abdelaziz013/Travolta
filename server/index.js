@@ -1,6 +1,8 @@
 const express = require('express');
-const AppError =require('./utils/appError')
+
+const cors = require('cors');
 const app = express();
+const AppError =require('./utils/appError')
 
 
 
@@ -8,7 +10,7 @@ const PORT = process.env.PORT || 5000;
 
 const hotelRoutes = require('./routes/hotel.js');
 require('dotenv').config();
-
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/hotel', hotelRoutes);

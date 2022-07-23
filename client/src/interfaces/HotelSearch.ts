@@ -1,4 +1,4 @@
-export interface CitySearch {
+export interface SuggestedCities{
   cityName:string;
   cityCode:string;
   countryName:string;
