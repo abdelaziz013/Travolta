@@ -7,7 +7,7 @@ const clientSecret = process.env.AMADEUS_SECRET_KEY;
 const amadeusClient = new Amadeus({ clientId, clientSecret });
 //suggest city on city search
 const suggestCity = async (req, res,next) => {
-    // console.log(amadeusClient)
+  
     try {
         const { keyword } = req.query;
         const response = await amadeusClient.referenceData.locations.get({
@@ -22,4 +22,12 @@ const suggestCity = async (req, res,next) => {
         next(new AppError(error_description, 406));
     }
 }
+
+
+// get hotels in selected city
+const getCityHotels=async()=>{
+
+}
+
+
 module.exports = { suggestCity }

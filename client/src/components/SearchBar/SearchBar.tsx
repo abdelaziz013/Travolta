@@ -1,6 +1,8 @@
 import React from 'react';
 import { Container, makeStyles } from "@material-ui/core";
 import SearchCity from './SearchCity';
+import DateFilter  from "./DateFilter";
+import dayjs from "dayjs";
 const useStyles = makeStyles({
     container: {
         padding: "1rem",
@@ -17,9 +19,19 @@ const useStyles = makeStyles({
 
 const SearchBar = () => {
     const classes = useStyles();
+    const [checkInDate, setCheckInDate] = React.useState(dayjs());
+    const [checkOutDate, setCheckOutDate] = React.useState(dayjs().add(1, "day"));
     return (
         <Container maxWidth="sm" className={classes.container}>
-            <SearchCity />
+            <SearchCity
+
+            />
+            <DateFilter
+               checkInDate={checkInDate}
+               checkOutDate={checkOutDate}
+               setCheckInDate={setCheckInDate}
+               setCheckOutDate={setCheckOutDate}
+            />
         </Container>
     );
 }
