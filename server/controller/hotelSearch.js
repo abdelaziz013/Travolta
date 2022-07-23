@@ -4,7 +4,7 @@ require('dotenv').config();
 const clientId = process.env.AMADEUS_API_KEY;
 const clientSecret = process.env.AMADEUS_SECRET_KEY;
 // create amadeus API client
-const amadeusClient = new Amadeus({ clientId:'pop', clientSecret });
+const amadeusClient = new Amadeus({ clientId, clientSecret });
 //suggest city on city search
 const suggestCity = async (req, res,next) => {
     // console.log(amadeusClient)
@@ -15,7 +15,8 @@ const suggestCity = async (req, res,next) => {
             subType: Amadeus.location.city,
         });
         const {data}=JSON.parse(response.body)
-        res.status(200).json(data);
+        const addressList =data.map(e=>e.address)
+        res.status(200).json(addressList);
     } catch (error) {
         const {description:{error_description}}=error
         next(new AppError(error_description, 406));
