@@ -1,0 +1,55 @@
+
+.guest{
+    display: flex;
+    justify-content: space-around;
+}
+.adults{
+    /* margin-right: 2rem; */
+
+
+}
+.adults label{
+
+    display: flex;
+    justify-content: center;
+}
+.children{
+    margin-right:10px;
+
+}
+.guestSelect{
+    margin-top: 5px;
+    display: flex;
+    /* flex-direction:row; */
+    align-items: center;
+    /* border:1px solid red; */
+
+
+}
+.guestSelect span{
+    padding: 0 1rem;
+}
+
+.btnSm {
+    border: 1px solid black;
+    outline: none;
+    /* padding: 1rem; */
+    height:15px;
+    width:15px;
+    transition: all ease 300ms;
+
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+
+
+    }
+
+    .btnSm :hover{
+        cursor: pointer;
+        background-color: black;
+        color: white;
+        transition: all ease 300ms
+    }

@@ -14,14 +14,18 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
+
     <ThemeProvider theme={theme}>
-      <Provider store={store}>
+
         <MuiPickersUtilsProvider utils={DayjsUtils}>
           <CssBaseline />
-          <App />
+          <Provider store={store}>
+          <App /></Provider>
+
         </MuiPickersUtilsProvider>
-        </Provider>
+
     </ThemeProvider>
+     
   </React.StrictMode>
 );
 // If you want to start measuring performance in your app, pass a function

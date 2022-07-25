@@ -8,13 +8,12 @@ interface DateFilterProps {
     checkInDate: dayjs.Dayjs
     checkOutDate: dayjs.Dayjs
     setCheckOutDate: React.Dispatch<React.SetStateAction<dayjs.Dayjs>>
-    setCheckInDate: React.Dispatch<React.SetStateAction<dayjs.Dayjs>>
+    setCheckInDate: (name:string,value:dayjs.Dayjs)=>void;
 }
 const useStyles = makeStyles((theme) => ({
     datePickersContainer: {
         display: "flex",
         justifyContent: "space-between",
-        marginTop: theme.spacing(2),
         width: "100%",
     },
     datePicker: {
@@ -36,7 +35,10 @@ const DateFilter = ({ checkInDate, checkOutDate, setCheckInDate, setCheckOutDate
                 label="Check In"
                 value={checkInDate}
                 minDate={minCheckIn.current}
-                onChange={(date) => setCheckInDate(date as dayjs.Dayjs)}
+                onChange={(date) =>
+                    // console.log(date)
+                    setCheckInDate('checkInDate',date as dayjs.Dayjs)
+                 }
                 className={classes.datePicker}
             />
             <div className={classes.spacer} />
@@ -46,7 +48,7 @@ const DateFilter = ({ checkInDate, checkOutDate, setCheckInDate, setCheckOutDate
                 inputVariant="outlined"
                 label="Check Out"
                 value={checkOutDate}
-                minDate={checkInDate?checkInDate.add(1, "day"):null}
+                // minDate={checkInDate?checkInDate.add(1, "day"):null}
                 onChange={(date) => setCheckOutDate(date as dayjs.Dayjs )}
                 className={classes.datePicker}
             />

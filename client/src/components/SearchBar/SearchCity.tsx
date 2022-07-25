@@ -35,7 +35,8 @@ const SearchCity = () => {
     const citySearch=useCitySearch()
     const setCityCode=useSetCityCode()
     React.useEffect(()=>{
-    },[inputValue,suggestedCites])
+        console.log(suggestedCites.length)
+    },[suggestedCites])
     return (
         <div>
             <Autocomplete
@@ -50,7 +51,7 @@ const SearchCity = () => {
                    setCityCode(newValue)
                 }}
                 onInputChange={(event, newInputValue) => {
-                    setInputValue(newInputValue)
+                    // setInputValue(newInputValue)
                     citySearch(newInputValue);
                 }}
                 getOptionLabel={(option) => option.cityName || ""}
